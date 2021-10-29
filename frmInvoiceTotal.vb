@@ -23,27 +23,31 @@
         Dim customerType As String = txtCustomerType.Text
 
         'Allow for the user to enter in a customer type and select the percentage based on that
-        If customerType = "R" OrElse customerType = "r" Then
-            If subtotal < 100 Then
-                discountPercent = 0
-            ElseIf subtotal >= 100 AndAlso subtotal < 250 Then
+
+        Select Case customerType
+            Case "R", "r"
+                Select Case subtotal
+                    Case Is < 100
+                        discountPercent = 0
+                    Case Is < 250
+                        discountPercent = 0.1D
+                    Case Is < 500
+                        discountPercent = 0.25D
+                    Case Else
+                        discountPercent = 0.3D
+                End Select
+            Case "C", "c"
+                discountPercent = 0.2D
+            Case "T", "t"
+                Select Case subtotal
+                    Case Is >= 500
+                        discountPercent = 0.5D
+                    Case Else
+                        discountPercent = 0.4D
+                End Select
+            Case Else
                 discountPercent = 0.1D
-            ElseIf subtotal >= 250 AndAlso subtotal < 500 Then
-                discountPercent = 0.25D
-            ElseIf subtotal >= 500 Then
-                discountPercent = 0.3D
-            End If
-        ElseIf customerType = "C" OrElse customerType = "c" Then
-            discountPercent = 0.2D
-        ElseIf customerType = "T" OrElse customerType = "t" Then
-            If subtotal >= 500 Then
-                discountPercent = 0.5D
-            Else
-                discountPercent = 0.4D
-            End If
-        Else
-            discountPercent = 0.1D
-        End If
+        End Select
 
 
         Dim discountAmount As Decimal = subtotal * discountPercent
