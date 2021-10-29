@@ -20,16 +20,31 @@
 
         Dim discountPercent As Decimal
 
+        Dim customerType As String = txtCustomerType.Text
 
-        If subtotal >= 500 Then
+        'Allow for the user to enter in a customer type and select the percentage based on that
+        If customerType = "R" OrElse customerType = "r" Then
+            If subtotal < 100 Then
+                discountPercent = 0
+            ElseIf subtotal >= 100 AndAlso subtotal < 250 Then
+                discountPercent = 0.1D
+            ElseIf subtotal >= 250 AndAlso subtotal < 500 Then
+                discountPercent = 0.25D
+            ElseIf subtotal >= 500 Then
+                discountPercent = 0.3D
+            End If
+        ElseIf customerType = "C" OrElse customerType = "c" Then
             discountPercent = 0.2D
-        ElseIf subtotal >= 250 And subtotal < 500 Then
-            discountPercent = 0.15D
-        ElseIf subtotal >= 100 And subtotal < 250 Then
-            discountPercent = 0.1D
+        ElseIf customerType = "T" OrElse customerType = "t" Then
+            If subtotal >= 500 Then
+                discountPercent = 0.5D
+            Else
+                discountPercent = 0.4D
+            End If
         Else
-            discountPercent = 0
+            discountPercent = 0.1D
         End If
+
 
         Dim discountAmount As Decimal = subtotal * discountPercent
         Dim invoiceTotal As Decimal = subtotal - discountAmount
@@ -50,7 +65,7 @@
         txtTotal.Text = invoiceTotal.ToString("c2")
 
 
-        txtSubtotal.Select()
+        txtCustomerType.Select()
 
 
         'Incrementing the number of invoices to display the total to the user every time the calculation is run
@@ -109,8 +124,11 @@
         txtLargestInvoice.Text = ""
         txtSmallestInvoice.Text = ""
         txtMidpoint.Text = ""
+        txtCustomerType.Text = ""
 
-        txtSubtotal.Select()
+        txtCustomerType.Select()
 
     End Sub
+
+
 End Class

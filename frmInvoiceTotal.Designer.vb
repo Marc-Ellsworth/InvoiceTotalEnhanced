@@ -45,12 +45,14 @@ Partial Class frmInvoiceTotal
         Me.Label6 = New System.Windows.Forms.Label()
         Me.txtTotalOfInvoices = New System.Windows.Forms.TextBox()
         Me.btnClearTotals = New System.Windows.Forms.Button()
+        Me.txtCustomerType = New System.Windows.Forms.TextBox()
+        Me.Label11 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(24, 19)
+        Me.Label1.Location = New System.Drawing.Point(24, 44)
         Me.Label1.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(49, 13)
@@ -61,7 +63,7 @@ Partial Class frmInvoiceTotal
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(24, 47)
+        Me.Label2.Location = New System.Drawing.Point(24, 75)
         Me.Label2.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(91, 13)
@@ -72,7 +74,7 @@ Partial Class frmInvoiceTotal
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(24, 83)
+        Me.Label3.Location = New System.Drawing.Point(24, 106)
         Me.Label3.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(93, 13)
@@ -83,7 +85,7 @@ Partial Class frmInvoiceTotal
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(24, 119)
+        Me.Label4.Location = New System.Drawing.Point(24, 137)
         Me.Label4.Margin = New System.Windows.Forms.Padding(2, 0, 2, 0)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(37, 13)
@@ -93,7 +95,7 @@ Partial Class frmInvoiceTotal
         '
         'txtSubtotal
         '
-        Me.txtSubtotal.Location = New System.Drawing.Point(150, 15)
+        Me.txtSubtotal.Location = New System.Drawing.Point(150, 41)
         Me.txtSubtotal.Margin = New System.Windows.Forms.Padding(2)
         Me.txtSubtotal.Name = "txtSubtotal"
         Me.txtSubtotal.Size = New System.Drawing.Size(76, 20)
@@ -101,7 +103,7 @@ Partial Class frmInvoiceTotal
         '
         'txtDiscountPercent
         '
-        Me.txtDiscountPercent.Location = New System.Drawing.Point(150, 44)
+        Me.txtDiscountPercent.Location = New System.Drawing.Point(150, 70)
         Me.txtDiscountPercent.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDiscountPercent.Name = "txtDiscountPercent"
         Me.txtDiscountPercent.ReadOnly = True
@@ -111,7 +113,7 @@ Partial Class frmInvoiceTotal
         '
         'txtDiscountAmount
         '
-        Me.txtDiscountAmount.Location = New System.Drawing.Point(150, 80)
+        Me.txtDiscountAmount.Location = New System.Drawing.Point(150, 106)
         Me.txtDiscountAmount.Margin = New System.Windows.Forms.Padding(2)
         Me.txtDiscountAmount.Name = "txtDiscountAmount"
         Me.txtDiscountAmount.ReadOnly = True
@@ -121,7 +123,7 @@ Partial Class frmInvoiceTotal
         '
         'txtTotal
         '
-        Me.txtTotal.Location = New System.Drawing.Point(150, 115)
+        Me.txtTotal.Location = New System.Drawing.Point(150, 141)
         Me.txtTotal.Margin = New System.Windows.Forms.Padding(2)
         Me.txtTotal.Name = "txtTotal"
         Me.txtTotal.ReadOnly = True
@@ -267,6 +269,22 @@ Partial Class frmInvoiceTotal
         Me.btnClearTotals.Text = "C&lear Totals"
         Me.btnClearTotals.UseVisualStyleBackColor = True
         '
+        'txtCustomerType
+        '
+        Me.txtCustomerType.Location = New System.Drawing.Point(150, 13)
+        Me.txtCustomerType.Name = "txtCustomerType"
+        Me.txtCustomerType.Size = New System.Drawing.Size(76, 20)
+        Me.txtCustomerType.TabIndex = 0
+        '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Location = New System.Drawing.Point(24, 18)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(84, 13)
+        Me.Label11.TabIndex = 21
+        Me.Label11.Text = "Customer Type: "
+        '
         'frmInvoiceTotal
         '
         Me.AcceptButton = Me.btnCalculate
@@ -274,6 +292,8 @@ Partial Class frmInvoiceTotal
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.btnExit
         Me.ClientSize = New System.Drawing.Size(496, 236)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.txtCustomerType)
         Me.Controls.Add(Me.btnClearTotals)
         Me.Controls.Add(Me.Label10)
         Me.Controls.Add(Me.Label9)
@@ -329,4 +349,6 @@ Partial Class frmInvoiceTotal
     Friend WithEvents Label6 As Label
     Friend WithEvents txtTotalOfInvoices As TextBox
     Friend WithEvents btnClearTotals As Button
+    Friend WithEvents txtCustomerType As TextBox
+    Friend WithEvents Label11 As Label
 End Class
