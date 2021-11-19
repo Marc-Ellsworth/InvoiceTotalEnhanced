@@ -18,36 +18,20 @@
         'data value. If the string can’t be converted, an exception occurs. 
         Dim subtotal As Decimal = Decimal.Parse(txtSubtotal.Text)
 
-        Dim discountPercent As Decimal
-
         Dim customerType As String = txtCustomerType.Text
 
-        'Allow for the user to enter in a customer type and select the percentage based on that
 
-        Select Case customerType
-            Case "R", "r"
-                Select Case subtotal
-                    Case Is < 100
-                        discountPercent = 0
-                    Case Is < 250
-                        discountPercent = 0.1D
-                    Case Is < 500
-                        discountPercent = 0.25D
-                    Case Else
-                        discountPercent = 0.3D
-                End Select
-            Case "C", "c"
-                discountPercent = 0.2D
-            Case "T", "t"
-                Select Case subtotal
-                    Case Is >= 500
-                        discountPercent = 0.5D
-                    Case Else
-                        discountPercent = 0.4D
-                End Select
-            Case Else
-                discountPercent = 0.1D
-        End Select
+
+        ' The Me statement here functions in a similar way to the "This" statement within Java. Is used to 
+        ' refer to the specific instance of a class that the sub procedure is currently functioning within.
+        ' This sub procedure can change the actual value of discount percent because we passed it ByRef instead of ByVal.
+
+        Dim discountPercent As Decimal = Me.ComputeDiscountPercent(customerType, subtotal)
+
+
+
+
+
 
 
         Dim discountAmount As Decimal = subtotal * discountPercent
@@ -104,6 +88,53 @@
 
     End Sub
 
+
+    ' In this instance, the keyword Private refers to the "Scope" of this sub procedure. Declaring it
+    ' as a private procedure, means that it is only accessable to the other modules contained within the 
+    ' same class, and won't be available to other procedures in other classes.
+    ' The keyword "Function" means that this procedure runs within another procedure, will "return" the values that 
+    ' are specified in the function declaration, in this case it returns a Decimal.
+    '
+    ' The parameters of the procedure are myCustomerType (String) and mySubtotal (Decimal).
+    ' Both of the parameters that are passed into this function are passed ByVal
+    '
+    ' The Return statement literally returns a computed value to the calling statement. In this instance it returns the
+    ' computed value "myDiscountPercent" to the variable discountPercent.
+    '
+
+    Private Function ComputeDiscountPercent(myCustomerType As String, mySubtotal As Decimal) As Decimal
+
+        Dim myDiscountPercent As Decimal
+
+        Select Case myCustomerType
+            Case "R", "r"
+                Select Case mySubtotal
+                    Case Is < 100
+                        myDiscountPercent = 0
+                    Case Is < 250
+                        myDiscountPercent = 0.1D
+                    Case Is < 500
+                        myDiscountPercent = 0.25D
+                    Case Else
+                        myDiscountPercent = 0.3D
+                End Select
+            Case "C", "c"
+                myDiscountPercent = 0.2D
+            Case "T", "t"
+                Select Case mySubtotal
+                    Case Is >= 500
+                        myDiscountPercent = 0.5D
+                    Case Else
+                        myDiscountPercent = 0.4D
+                End Select
+            Case Else
+                myDiscountPercent = 0.1D
+        End Select
+
+        Return myDiscountPercent
+    End Function
+
+
     Private Sub btnExit_Click(sender As Object, e As EventArgs) Handles btnExit.Click
         Me.Close()
     End Sub
@@ -134,5 +165,25 @@
 
     End Sub
 
+
+    Private Sub ClearAllBoxex(Sender As Object, e As EventArgs) Handles txtCustomerType.DoubleClick, txtSubtotal.DoubleClick
+
+        txtCustomerType.Text = ""
+        txtSubtotal.Text = ""
+        txtDiscountAmount.Text = ""
+        txtDiscountPercent.Text = ""
+        txtTotal.Text = ""
+
+        txtNumberOfInvoices.Text = ""
+        txtTotalOfInvoices.Text = ""
+        txtInvoiceAverage.Text = ""
+        txtLargestInvoice.Text = ""
+        txtSmallestInvoice.Text = ""
+        txtMidpoint.Text = ""
+
+        txtCustomerType.Select()
+
+
+    End Sub
 
 End Class
