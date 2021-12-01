@@ -79,6 +79,8 @@
             MessageBox.Show("Please check entries for valid numeric data.", ex.GetType.ToString)
         Catch ex As OverflowException
             MessageBox.Show("Please ensure that entries aren't too large.", ex.GetType.ToString)
+        Catch ex As FormatException
+            MessageBox.Show("Please check entries for valid numeric data.", ex.GetType.ToString)
         Catch ex As Exception
             MessageBox.Show(ex.Message & vbNewLine & vbNewLine & ex.StackTrace, ex.GetType.ToString)
         Finally
